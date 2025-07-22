@@ -1,11 +1,5 @@
 import * as auth from '$lib/server/auth';
-import { db } from '$lib/server/db';
-import type { Handle, ServerInit } from '@sveltejs/kit';
-import { migrate } from 'drizzle-orm/postgres-js/migrator';
-
-export const init: ServerInit = () => {
-	migrate(db, { migrationsFolder: './drizzle' });
-};
+import type { Handle } from '@sveltejs/kit';
 
 const handleAuth: Handle = async ({ event, resolve }) => {
 	const sessionToken = event.cookies.get(auth.sessionCookieName);
